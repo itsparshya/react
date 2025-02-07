@@ -13,6 +13,9 @@ import LayersIcon from '@mui/icons-material/Layers';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { DashboardLayout } from '@toolpad/core/DashboardLayout';
 import { useDemoRouter } from '@toolpad/core/internal';
+import CustomerForm from '@/app/component/CustomerForm';
+import Form from '../../component/Form';
+import Form1 from '../../component/Form1';
 
 const NAVIGATION = [
   {
@@ -25,9 +28,25 @@ const NAVIGATION = [
     icon: <DashboardIcon />,
   },
   {
-    segment: 'orders',
-    title: 'Orders',
+    segment: 'customers',
+    title: 'Customer',
     icon: <ShoppingCartIcon />,
+    children: [
+      {
+        segment: 'add-customer',
+        title: 'Add Customer',
+        icon: <DescriptionIcon />,
+      },
+      {
+        segment: 'edit-customer',
+        title: 'Edit Customer',
+        icon: <DescriptionIcon />,
+      },
+      {
+        segment: 'remove-customer',
+        title: 'Remove Customer',
+        icon: <DescriptionIcon />,
+      },]
   },
   {
     kind: 'divider',
@@ -87,7 +106,14 @@ function DemoPageContent({ pathname }) {
         textAlign: 'center',
       }}
     >
-      <Typography>Dashboard content for {pathname}</Typography>
+      <Typography>Dashboard content for {pathname}
+       {pathname === '/customers/add-customer' && (
+         <div><Form /> </div>
+       )}
+        {pathname === '/customers/edit-customer' && (
+         <div><Form1 /> </div>
+       )}
+      </Typography>
     </Box>
   );
 }
